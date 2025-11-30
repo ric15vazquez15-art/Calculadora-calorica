@@ -79,7 +79,7 @@
 
 let alimentos = [];
 
-fetch("alimentos.json")
+fetch("Data/alimentos.json")
   .then(res => res.json())
   .then(data => {
     alimentos = data;
@@ -194,4 +194,5 @@ buscador.addEventListener("keydown", (e) => {
 <br>
 </div>
 </body>
+
 </html>
