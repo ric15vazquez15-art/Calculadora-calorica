@@ -1,0 +1,172 @@
+
+#titulo{
+    text-align:center;
+    padding-top:300px;
+    padding-bottom:200px;
+    font-size:300px;
+    color:rgb(255, 255, 255);
+    background-image:url("img/calories-3.png");
+    background-size: cover;
+    background-position: center;
+}
+.barra {
+  position: fixed;        /* queda siempre arriba */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #08435f;       /* color de fondo */
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 60px;              /* separación entre botones */
+  z-index: 1000;          /* para que no se tape */
+}
+
+.barra a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;  /* quita subrayado */
+  font-size: 20px;
+  font-weight: bold;
+  transition: 0.3s;
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.barra a:hover {
+  color: #eeff00;         /* color al pasar el mouse */
+}
+#inicio{
+  font-size:100px;
+  padding:20px;
+  justify-content:center;
+  color:slateblue;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#calculadora{
+  font-size:100px;
+  padding:20px;
+  justify-content:center;
+  color:slateblue;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#alimentos{
+  font-size:100px;
+  padding:20px;
+  justify-content:center;
+  color:slateblue;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#buscador{
+  width: 80%;
+  margin: 40px auto;
+  padding: 12px 20px;
+  border: 2px solid #888;
+  border-radius: 10px;
+  font-size: 18px;
+  display: block;
+}
+
+#buscador:focus {
+  border-color: #5ae6ff;
+  outline: none;
+  box-shadow: 0px 0px 8px rgba(6, 119, 153, 0.5);
+}
+.contenedor-buscador{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  font-size: 30px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.encabezado-alimentos {
+  display: flex;
+  justify-content: space-between; /* uno a la izquierda y otro a la derecha */
+  align-items: center;
+  margin:20px auto;
+  font-size: 30px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  width: 80%;
+  margin: 40px auto 0 auto;
+  padding: 30px;
+  background: #92e6ff;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+  color:rgb(255, 255, 255);
+
+
+}
+
+#agregados {
+    margin: 0;
+}
+
+#cal-total {
+    margin: 0;
+    font-size: 18px;
+}
+.item-alimento {
+    padding: 15px 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background: rgb(3, 28, 255);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-eliminar {
+    background: #45b7ec;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-eliminar:hover {
+    background: #d40000;
+}
+#parrafo{
+  font-size: 70px;
+  padding:10px;
+  justify-content:flex-end;
+  color:rgb(0, 0, 0);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#parrafos{
+  font-size: 30px;
+  padding:10px;
+  justify-content:center;
+  text-align:right;
+  color:rgb(0, 0, 0);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#img1{
+  position:relative;
+  bottom: 1500px;
+}
+#plato{
+  position:relative;
+  left: 100px;
+  bottom: 500px;
+}
+#parrafo2{
+  font-size: 30px;
+  padding:10px;
+  justify-content:center;
+  text-align:left;
+  margin-top: 10px;
+  color:rgb(0, 0, 0);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#fuentes{
+  font-size: 30px;
+  padding:10px;
+  justify-content:center;
+  text-align:left;
+  margin-top: 10px;
+  color:rgb(0, 0, 0);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

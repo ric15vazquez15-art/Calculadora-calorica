@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora calórica</title>
+    <link rel="stylesheet" href ="style.css"/>
+</head>
+<body>
+<nav class="barra">
+  <a href="#inicio">Inicio</a>
+  <a href="#calculadora">Calculadora</a>
+  <a href="#alimentos">Referencias</a>
+</nav>
+  <h1 id = "titulo">Calorías</h1>
+  <h2 id = "inicio">¡Veamos lo escenciales <br>
+      que son las calorías en nuestra vida!</p>
+  <p>
+  <div id = "parrafo">
+    <p>La caloría es la unidad básica de energía
+    <br> que obtenemos de los alimentos.
+    </p>
+  </div>
+  <div id ="parrafos">
+    <p>Ocupamos energía para todo desde correr, respirar, pensar o digerir.
+      <br><br>Por lo que es necesario cuidar nuestra alimentación
+      <br> y consumir lo adecuado a nuestro estilo de vida,
+      <br> las calorías no consumidas se almacenan como grasas.
+      <br>
+    </p>
+    <p>
+       El control del peso es cuestión de las calorías
+      <br> que tomas frente a las calorías que quemas al hacer actividad física.
+    </p>
+    <p> La siguiente calculadora caloríca es <br>
+        solo una referencia de la cantidad de calorias 
+        <br>basadas en la alimentación, las calorias ideales dependen de cada individuo
+        <br> por su edad, sexo, actividad fisica, peso, etc...
+    <br><br></p>
+  </div>
+  <div id = "parrafo2">
+    <p>
+      La caloría es una unidad de medida de la energía,
+      <br>es decir, la cantidad necesaria de calor en forma de energía
+      <br>para poder producir un incremento de 1ºC en una masa de agua
+      <br>de 1 gramo. En nutrición se usa esta medida puesto que el
+      <br> organismo
+      <br> necesita energía para funcionar correctamente: 
+      <br>funcionamiento del corazón, del sistema musculoesquelético,
+      <br> del
+      <br> sistema nervioso, etc.
+    </p>
+    <p>
+      Una kilocaloría es la medida del valor
+      <br>energético de la comida.
+      <br>Nuestro cuerpo quema calorías utilizando ATP}
+      <br>(adenosin-trifosfórico) que es un nucleótido que obtiene energía
+      <br>de las células. La energía llega a nuestro organismo a través
+      <br>de la oxidación de los alimentos que ingerimos.
+    </p>
+  </div>
+  <img id="img1" src="img/gourmet.avif"/>
+  <img id="plato" src="img/El-plato.jpg"/>
+  <h2 id = "calculadora">
+    Comencemos a calcular la cantidad de calorias
+    <br>de tus alimentos.
+  </h2>
+  <div class="contenedor-buscador">
+    <input type="text" id="buscador" placeholder="Ingresa alimentos"/>
+  </div>
+  <div class="encabezado-alimentos">
+  <div id="sugerencias"></div>
+  <h2 id="agregados">Alimentos</h2>
+  <div id="listado"></div>
+  <p class="totalCal">
+    Total de calorias: <span id = "calorias">0</span> kcal
+  </p>
+
+  </div>
+  <script>
+
+let alimentos = [];
+
+fetch("alimentos.json")
+  .then(res => res.json())
+  .then(data => {
+    alimentos = data;
+    console.log("Alimentos cargados correctamente:", alimentos);
+  })
+  .catch(err => console.error("Error cargando alimentos.json", err));
+let totalCalorias = 0;
+
+/* --- Referencias al DOM (los elementos de tu HTML) --- */
+const buscador = document.getElementById("buscador");
+const sugerencias = document.getElementById("sugerencias");
+const listado = document.getElementById("listado");
+const spanCalorias = document.getElementById("calorias");
+
+/* --- Función de búsqueda (autocompletado básico) --- */
+function buscarAlimentos(texto) {
+  texto = texto.trim().toLowerCase();
+  if (!texto) return [];
+  return alimentos.filter(a => a.nombre.toLowerCase().includes(texto));
+}
+
+/* --- Actualizar el total en pantalla --- */
+function actualizarTotal() {
+  spanCalorias.textContent = totalCalorias;
+}
+
+/* --- Crear una tarjeta/elemento en la lista de agregados --- */
+function crearItemLista(alimento) {
+  const item = document.createElement("div");
+  item.className = "item-alimento";
+  // mostramos nombre + kcal + boton eliminar
+  item.innerHTML = `
+    <span class="item-nombre">${alimento.nombre}</span>
+    <span class="item-kcal">${alimento.calorias} kcal</span>
+    <button type="button" class="btn-eliminar">Eliminar</button>
+  `;
+
+  // Al hacer clic en eliminar, quitamos el item y restamos calorías
+  const btnEliminar = item.querySelector(".btn-eliminar");
+  btnEliminar.addEventListener("click", () => {
+    listado.removeChild(item);
+    totalCalorias -= alimento.calorias;
+    if (totalCalorias < 0) totalCalorias = 0;
+    actualizarTotal();
+  });
+
+  listado.appendChild(item);
+}
+
+/* --- Mostrar sugerencias cuando el usuario escribe --- */
+buscador.addEventListener("input", () => {
+  const texto = buscador.value;
+  sugerencias.innerHTML = ""; // limpiamos sugerencias
+
+  if (!texto.trim()) return;
+
+  const resultados = buscarAlimentos(texto);
+
+  resultados.slice(0, 8).forEach(r => { // limitamos a 8 sugerencias
+    const div = document.createElement("div");
+    div.className = "sugerencia-item";
+    div.textContent = `${r.nombre} — ${r.calorias} kcal`;
+
+    // Al hacer clic en la sugerencia, la añadimos a la lista y actualizamos total
+    div.addEventListener("click", () => {
+      crearItemLista(r);
+      totalCalorias += r.calorias;
+      actualizarTotal();
+
+      // limpiamos la busqueda
+      sugerencias.innerHTML = "";
+      buscador.value = "";
+    });
+
+    sugerencias.appendChild(div);
+  });
+
+});
+
+/* --- (Opcional) Permitir agregar presionando Enter si hay exactamente una sugerencia --- */
+buscador.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    const resultados = buscarAlimentos(buscador.value);
+    if (resultados.length === 1) {
+      crearItemLista(resultados[0]);
+      totalCalorias += resultados[0].calorias;
+      actualizarTotal();
+      sugerencias.innerHTML = "";
+      buscador.value = "";
+      e.preventDefault();
+    }
+  }
+});
+</script>
+
+  <img id="img2"src="img/manzana.png"/>
+  <h2 id = alimentos>
+    ¡Aquí puedes conocer y ver tablas caloricas de muchos alimentos!
+  </h2>
+<div id="fuentes">
+      <p>
+    Fuentes de información o formas alternativas
+    <br>de calcular las calorias en las siguientes paginas:
+  </p>
+<a target=_blank href="https://www.imss.gob.mx/salud-en-linea/apps-sano/calculadora-calorias">Calculadora calórica IMSS</a>
+<br>
+<a target=_blank href="https://www.sanitas.es/biblioteca-de-salud/dieta-alimentacion/nutricion-familiar/san005196wr">Calorías, sobrepeso y salud</a>
+<br>
+<a target=_blank href="https://www.msdmanuals.com/es/hogar/trastornos-nutricionales/introducci%C3%B3n-a-la-nutrici%C3%B3n/calor%C3%ADas?ruleredirectid=757">Calorías</a>
+<br>
+<a target=_blank href="https://recetasdecocina.elmundo.es/tabla-calorias">Tabla de calorías</a>
+<br>
+</div>
+</body>
+</html>

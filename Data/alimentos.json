@@ -1,0 +1,82 @@
+[
+    {
+        "nombre": "Manzana",
+        "calorias": 52
+    },
+    {
+        "nombre": "Banana",
+        "calorias": 89
+    },
+    {
+        "nombre": "Arroz (100g)",
+        "calorias": 130
+    },
+    {
+        "nombre": "Pollo (100g)",
+        "calorias": 240
+    },
+    {
+        "nombre": "Huevo",
+        "calorias": 78
+    },
+    {
+        "nombre": "Pan (100g)",
+        "calorias": 265
+    },
+    {
+        "nombre": "Leche (100ml)",
+        "calorias": 42
+    },
+    {
+        "nombre": "Mango",
+        "calorias": 60
+    },
+    {
+        "nombre": "Mandarina",
+        "calorias": 43
+    },
+    {
+        "nombre": "Pasta (100g)",
+        "calorias": 131
+    },
+    {
+        "nombre": "Carne de res (100g)",
+        "calorias": 250
+    },
+    {
+        "nombre": "Queso (100g)",
+        "calorias": 402
+    },
+    {
+        "nombre": "Avena (100g)",
+        "calorias": 389
+    },
+    {
+        "nombre": "Fresa (100g)",
+        "calorias": 32
+    },
+    {
+        "nombre": "Durazno",
+        "calorias": 39
+    },
+    {
+        "nombre": "Pera",
+        "calorias": 57
+    },
+    {
+        "nombre": "Yogur (100g)",
+        "calorias": 59
+    },
+    {
+        "nombre": "Cereal (30g)",
+        "calorias": 110
+    },
+    {
+        "nombre": "Tortilla (1 pieza)",
+        "calorias": 60
+    },
+    {
+        "nombre": "Atún (100g)",
+        "calorias": 132
+    }
+]
